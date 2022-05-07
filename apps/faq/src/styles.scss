@@ -1,0 +1,30 @@
+@use "./assets/scss/typography/typography";
+
+@font-face {
+  font-family: "oswald";
+  src: url("/assets/fonts/oswald-light.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 300;
+}
+@font-face {
+  font-family: "oswald";
+  src: url("/assets/fonts/oswald-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+  font-family: "oswald";
+  src: url("/assets/fonts/oswald-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 500;
+}
+@mixin fe-typography($config: null) {
+  @if $config == null {
+    $config: typography.typography-config();
+  }
+  @include typography.base-typography($config)
+}
+
+@include fe-typography();
+
+

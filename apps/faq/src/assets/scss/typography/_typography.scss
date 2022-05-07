@@ -1,0 +1,134 @@
+@import "typography-utils";
+
+@function typography(
+  $font-size,
+  $line-height: $font-size,
+  $font-weight: 400,
+  $font-family: null,
+  $letter-spacing: null
+) {
+  @return (
+    font-size: $font-size,
+    line-height: $line-height,
+    font-weight: $font-weight,
+    font-family: $font-family,
+    letter-spacing: $letter-spacing
+  );
+}
+
+@function typography-config(
+  $font-family: 'oswald, roboto, arial, sans-serif',
+  $heading-1: typography(2.25rem, 2.38rem, 400, $letter-spacing: 0),
+  $heading-2: typography(1.75rem, 2rem, 500, $letter-spacing: 0),
+  $heading-3: typography(1.5rem, 1.63rem, 400, $letter-spacing: 0),
+  $paragraph-1: typography(1.44rem, 1.63rem, 300, $letter-spacing: 0),
+  $paragraph-2: typography(1.44rem, 1.63rem, 500, $letter-spacing: 0),
+  $caption-1: typography(1.13rem, 1.38rem, 300, $letter-spacing: 0),
+  $caption-2: typography(1.13rem, 1.38rem, 500, $letter-spacing: 0)
+) {
+  // Declare an initial map with all of the levels.
+  $config: (
+    heading-1: $heading-1,
+    heading-2: $heading-2,
+    heading-3: $heading-3,
+    paragraph-1: $paragraph-1,
+    paragraph-2: $paragraph-2,
+    caption-1: $caption-1,
+    caption-2: $caption-2
+  );
+
+  // Loop through the levels and set the `font-family` of the ones that don't have one to the base.
+  // Note that Sass can't modify maps in place, which means that we need to merge and re-assign.
+  @each $key, $level in $config {
+    @if map-get($level, font-family) == null {
+      $new-level: map-merge(
+        $level,
+        (
+          font-family: $font-family
+        )
+      );
+      $config: map-merge(
+        $config,
+        (
+          $key: $new-level
+        )
+      );
+    }
+  }
+
+  // Add the base font family to the config.
+  @return map-merge(
+    $config,
+    (
+      font-family: $font-family
+    )
+  );
+}
+
+// Adds the base typography styles, based on a config.
+@mixin base-typography($config, $selector: ".liberty-typography") {
+  .h1,
+  .headline,
+  #{$selector} h1 {
+    @include typography-level-to-styles($config, heading-1);
+    margin: 0 0 16px;
+  }
+
+  .h2,
+  .title,
+  #{$selector} h2 {
+    @include typography-level-to-styles($config, heading-2);
+    margin: 0 0 16px;
+  }
+
+  .h3,
+  .subheading-2,
+  #{$selector} h3 {
+    @include typography-level-to-styles($config, heading-3);
+    margin: 0 0 16px;
+  }
+
+  .body-strong,
+  .body-2,
+  .paragraph-2 #{$selector} {
+    @include typography-level-to-styles($config, paragraph-2);
+    p {
+      margin: 2.4rem 0;
+    }
+  }
+
+  .body,
+  .body-1,
+  .paragraph-1 #{$selector} {
+    @include typography-level-to-styles($config, paragraph-1);
+
+    p {
+      margin: 2.4rem 0;
+    }
+  }
+
+  p {
+    &.body,
+    &.body-1,
+    &.paragraph-1 #{$selector} {
+      @include typography-level-to-styles($config, paragraph-1);
+      margin: 2.4rem 0;
+    }
+
+    &.body-strong,
+    &.body-2,
+    &.paragraph-2 #{$selector} {
+      @include typography-level-to-styles($config, paragraph-2);
+      margin: 2.4rem 0;
+    }
+  }
+
+  .small,
+  .caption-1 {
+    @include typography-level-to-styles($config, caption-1);
+  }
+
+  .small-strong .caption-2 {
+    @include typography-level-to-styles($config, caption-2);
+  }
+}

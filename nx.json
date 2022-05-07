@@ -1,0 +1,43 @@
+{
+  "npmScope": "liberty-examples",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/nx-cloud",
+      "options": {
+        "accessToken": "MmY5OGQwM2YtMWYzYi00ZDVjLTlhOTgtMTFkZDJkMjExNDYzfHJlYWQtd3JpdGU=",
+        "cacheableOperations": ["build", "test", "lint", "e2e"],
+        "canTrackAnalytics": false,
+        "showUsageWarnings": true
+      }
+    }
+  },
+  "projects": {
+    "faq": {
+      "tags": []
+    },
+    "faq-e2e": {
+      "tags": [],
+      "implicitDependencies": ["faq"]
+    },
+    "libertyware-core": {
+      "tags": []
+    },
+    "icons": {
+      "tags": ["icons"]
+    }
+  }
+}

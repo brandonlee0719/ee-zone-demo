@@ -1,0 +1,26 @@
+<ng-container *rxLet="stateChange; let state">
+  <div class="liberty-details">
+    <div
+    class="liberty-details-header"
+      [attr.id]="ariaHeaderId"
+      [attr.aria-expanded]="state?.isOpened"
+      [attr.aria-controls]="ariaBodyId"
+      (keydown)="keydown($event)"
+      (click)="toggle()"
+    >
+      <div class="liberty-details-header__fill"><ng-content select="div[role=header]"></ng-content></div>
+      <div class="liberty-details-header__indicator">
+        <svg-icon key="plus-icon" [@indicatorRotate]="expandedState"></svg-icon>
+      </div>
+    </div>
+
+    <div
+      class="liberty-details-body body-strong"
+      [@bodyExpansion]="expandedState"
+      [id]="ariaBodyId"
+    >
+      <ng-content select="liberty-summary"></ng-content>
+    </div>
+  </div>
+</ng-container>
+

@@ -1,0 +1,30 @@
+h1 {
+  text-transform: uppercase;
+}
+
+.splitter {
+  border-width: 15px;
+  border-color: #000;
+}
+
+liberty-detail {
+  margin-block-end: 10px;
+  border-block-end: 3px solid #000;
+  display: block;
+}
+
+.faq-num {
+  // looks like a bug on logical plugin not surprised after having to fix the stylelint by same group
+  // margin-inline-end: 20px;
+  margin-right: 20px;
+}
+
+:dir(rtl) .faq-num {
+  margin-right: 0;
+  margin-left: 20px;
+}
+
+.faq-num:dir(rtl) {
+  margin-right: 0;
+  margin-left: 20px;
+}
