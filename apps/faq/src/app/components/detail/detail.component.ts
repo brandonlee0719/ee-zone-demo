@@ -36,6 +36,9 @@ export class DetailComponent {
   ariaHeaderId = `details-control-${uniqueId++}`;
   ariaBodyId = `details-summary-${uniqueId++}`;
 
+  // ariaHeaderId = `details-control-${uniqueId++}`;
+  // ariaBodyId = `details-summary-${uniqueId++}`;
+
   get expandedState() {
     return this.stateChange?.value?.isOpened ? 'expanded' : 'collapsed';
   }

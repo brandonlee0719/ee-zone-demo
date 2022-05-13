@@ -1,6 +1,7 @@
 import { AnimationTriggerMetadata, trigger, state, style, transition, animate } from "@angular/animations";
 
-export const ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,1)';
+export const ANIMATION_TIMING = '225ms cubic-bezier(1,0.0,0.2,1)';
+// export const ANIMATION_TIMING = '225ms cubic-bezier(0.4,0.0,0.2,1)';
 
 export const DetailsAnimations: {
   readonly indicatorRotate: AnimationTriggerMetadata;

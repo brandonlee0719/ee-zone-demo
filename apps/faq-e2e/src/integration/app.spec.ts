@@ -9,5 +9,7 @@ describe('faq', () => {
 
     // Function helper example, see `../support/app.po.ts` file
     getGreeting().contains('Welcome to faq!');
+
+    getGreeting().contains('cypress test');
   });
 });

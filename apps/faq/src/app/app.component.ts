@@ -20,7 +20,6 @@ interface FAQState {
 })
 export class AppComponent {
   strategies = Object.keys(getStrategies({ cdRef: { context: {} } } as any));
-
   readonly faqs$ = this.state.select('faqs');
 
   constructor(
@@ -34,6 +33,8 @@ export class AppComponent {
     router.events
       .pipe(filter(e => e instanceof NavigationEnd))
       .subscribe(() => appRef.tick());
+
+    console.log(this.strategies);
 
     this.state.connect('faqs', this.faqService.FAQS());
   }
